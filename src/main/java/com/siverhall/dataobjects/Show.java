@@ -10,7 +10,7 @@ public class Show {
     @GeneratedValue
     private Long id;
 
-    @Basic(optional = false)
+    @Column(unique = true, nullable = false)
     private String name;
 
     @Basic

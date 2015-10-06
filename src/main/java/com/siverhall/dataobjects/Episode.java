@@ -3,8 +3,8 @@ package com.siverhall.dataobjects;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "seen_episodes")
-public class SeenEpisode {
+@Table(name = "episodes")
+public class Episode {
 
     @Id
     @GeneratedValue
@@ -13,8 +13,14 @@ public class SeenEpisode {
     @ManyToOne(optional = false)
     private Show show;
 
+    @Basic(optional = false)
     private int season;
+
+    @Basic(optional = false)
     private int episode;
+
+    @Column(name = "seen", nullable = false)
+    private boolean seen = true;
 
     public Long getId() {
         return id;
@@ -43,5 +49,13 @@ public class SeenEpisode {
 
     public void setEpisode(int episode) {
         this.episode = episode;
+    }
+
+    public boolean isSeen() {
+        return seen;
+    }
+
+    public void setSeen(boolean seen) {
+        this.seen = seen;
     }
 }
