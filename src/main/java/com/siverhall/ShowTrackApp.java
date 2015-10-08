@@ -1,8 +1,7 @@
 package com.siverhall;
 
-import com.siverhall.modules.ShowTrackModule;
+import com.siverhall.pages.BasePage;
 import com.siverhall.pages.StartPage;
-import org.apache.wicket.guice.GuiceComponentInjector;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
 
@@ -21,7 +20,5 @@ public class ShowTrackApp extends WebApplication
 	{
 		super.init();
 
-//		getComponentInstantiationListeners().add(
-//				new GuiceComponentInjector(this, new ShowTrackModule()));
 	}
 }
