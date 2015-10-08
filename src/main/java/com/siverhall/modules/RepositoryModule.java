@@ -9,6 +9,10 @@ import com.siverhall.services.repos.ShowRepo;
  *  persistence.xml ("hibernate-manager")
  */
 public class RepositoryModule extends JpaRepositoryModule {
+    public RepositoryModule() {
+        super("hibernate-manager");
+    }
+
     @Override
     protected void bindRepositories(RepositoryBinder binder) {
         binder.bind(ShowRepo.class).to("hibernate-manager");
