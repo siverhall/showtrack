@@ -8,7 +8,7 @@ import java.util.List;
 @ImplementedBy(ShowServiceImpl.class)
 public interface ShowService {
 
-    Show findShow(String name);
+    Show findById(Long id);
 
     List<Show> getCurrentShows();
 }
