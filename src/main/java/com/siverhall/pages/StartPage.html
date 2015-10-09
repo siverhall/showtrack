@@ -2,7 +2,7 @@
 <html xmlns:wicket="http://wicket.apache.org">
 	<body>
 		<wicket:extend>
-			<h3>Your shows:</h3>
+			<h3>Your shows</h3>
 			<br />
             <div wicket:id="currentShows">
                 <a wicket:id="showLink" href="#">
@@ -13,11 +13,11 @@
 			<br />
 			<br />
 			<br />
-			<h3>Add new show:</h3>
+			<h3>Add new show</h3>
             <br />
             <form wicket:id="searchForm">
-                    <input placeholder="Enter name of show" type="text" wicket:id="searchString"/>
-                    <button type="submit">Search!</button>
+                    <input class="searchField" placeholder="Enter name of show" type="text" wicket:id="searchString"/>
+                    <button class="btn" type="submit">Find show</button>
             </form>
             <div wicket:id="feedback"></div>
         </wicket:extend>

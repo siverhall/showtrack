@@ -55,8 +55,7 @@ public class EpisodeApiServiceImpl implements EpisodeApiService {
             ShowDTO result = MAPPER.readValue(showInfo.getRawBody(), ShowDTO.class);
 
             if (showRepo.findByName(result.getTitle()) != null) {
-                System.out.println("Show already exists");
-                return false;
+                return false; // Show already exists
             }
 
             Show show = showRepo.save(new Show(result.getTitle(), result.getImdb_id()));

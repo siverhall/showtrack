@@ -94,3 +94,21 @@ td {
 .feedbackPanelSUCCESS {
     background-color: #A9F5A9;
 }
+
+.btn {
+    color: #ffffff;
+    font-size: 15px;
+    background: #0B6138;
+    padding: 5px 12px 5px 12px;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background: #50a84c;
+    text-decoration: none;
+}
+
+.searchField {
+    font-size: 17px;
+    padding: 2px;
+}
