@@ -74,7 +74,6 @@ public class StartPage extends BasePage {
 
         @Override
         protected void onSubmit() {
-            System.out.println("submit called");
             epguidesAPI.findShow(searchString.getModelObject());
             info("Found show!");
         }
