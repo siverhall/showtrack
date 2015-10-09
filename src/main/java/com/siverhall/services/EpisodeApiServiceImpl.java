@@ -13,6 +13,7 @@ import com.siverhall.services.repos.EpisodeRepo;
 import com.siverhall.services.repos.ShowRepo;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -27,10 +28,20 @@ public class EpisodeApiServiceImpl implements EpisodeApiService {
     @Inject
     private EpisodeRepo episodeRepo;
 
-    public static final String EPGUIDES_BASE_URL = "https://frecar-epguides-api-v1.p.mashape.com/";
-    public static final String API_KEY = "FjBJLAnmuzmshbdX0fQnsf3FtcSCp15ozkIjsncujQK21qrRMV";
+    private String apiURL;
+    private String apiKey;
     private static final com.fasterxml.jackson.databind.ObjectMapper MAPPER
             = new com.fasterxml.jackson.databind.ObjectMapper();
+
+    @Inject
+    public void setApiURL(@Named("apiURL") String apiURL) {
+        this.apiURL = apiURL;
+    }
+
+    @Inject
+    public void setApiKEY(@Named("apiKey") String apiKey) {
+        this.apiKey = apiKey;
+    }
 
     /**
      *  Connects to EpGuides API at specified remote url and search for TV shows with the
@@ -40,7 +51,7 @@ public class EpisodeApiServiceImpl implements EpisodeApiService {
     @Override
     public boolean findShow(String name) {
         try {
-            HttpResponse<JsonNode> showInfo = getResponse(EPGUIDES_BASE_URL + name + "/info");
+            HttpResponse<JsonNode> showInfo = getResponse(apiURL + name + "/info");
             ShowDTO result = MAPPER.readValue(showInfo.getRawBody(), ShowDTO.class);
 
             if (showRepo.findByName(result.getTitle()) != null) {
@@ -50,7 +61,7 @@ public class EpisodeApiServiceImpl implements EpisodeApiService {
 
             Show show = showRepo.save(new Show(result.getTitle(), result.getImdb_id()));
 
-            HttpResponse<JsonNode> episodes = getResponse(EPGUIDES_BASE_URL + name);
+            HttpResponse<JsonNode> episodes = getResponse(apiURL + name);
             saveEpisodeInfo(episodes, show);
 
         } catch (UnirestException | IOException e) {
@@ -65,7 +76,7 @@ public class EpisodeApiServiceImpl implements EpisodeApiService {
      */
     private HttpResponse<JsonNode> getResponse(String url) throws UnirestException {
         return Unirest.get(url)
-                .header("X-Mashape-Key", API_KEY)
+                .header("X-Mashape-Key", apiKey)
                 .header("Accept", "application/json")
                 .asJson();
     }
