@@ -1,4 +1,4 @@
-package com.siverhall.api;
+package com.siverhall.dataobjects;
 
 public class ShowDTO {
         private String title;

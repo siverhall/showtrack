@@ -7,5 +7,5 @@ import com.google.inject.ImplementedBy;
  */
 @ImplementedBy(EpisodeApiServiceImpl.class)
 public interface EpisodeApiService {
-    void findShow(String name);
+    boolean findShow(String name);
 }

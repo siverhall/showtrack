@@ -5,8 +5,8 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import com.siverhall.api.EpisodeDTO;
-import com.siverhall.api.ShowDTO;
+import com.siverhall.dataobjects.EpisodeDTO;
+import com.siverhall.dataobjects.ShowDTO;
 import com.siverhall.dataobjects.Episode;
 import com.siverhall.dataobjects.Show;
 import com.siverhall.services.repos.EpisodeRepo;
@@ -38,7 +38,7 @@ public class EpisodeApiServiceImpl implements EpisodeApiService {
      *
      */
     @Override
-    public void findShow(String name) {
+    public boolean findShow(String name) {
         try {
             HttpResponse<JsonNode> showInfo = getResponse(EPGUIDES_BASE_URL + name + "/info");
             Show show = saveShowInfo(showInfo);
@@ -48,7 +48,9 @@ public class EpisodeApiServiceImpl implements EpisodeApiService {
 
         } catch (UnirestException | IOException e) {
             e.printStackTrace();
+            return false;
         }
+        return true;
     }
 
     private HttpResponse<JsonNode> getResponse(String url) throws UnirestException {

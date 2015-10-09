@@ -1,4 +1,4 @@
-package com.siverhall.api;
+package com.siverhall.dataobjects;
 
 import java.util.Date;
 
