@@ -17,4 +17,10 @@ public class EpisodeServiceImpl implements EpisodeService {
     public List<Episode> findEpisodes(Show show, int season) {
         return episodeRepo.findByShowAndSeason(show, season);
     }
+
+    @Override
+    public void checkEpisode(Episode episode, Boolean seen) {
+        episode.setSeen(seen);
+        episodeRepo.save(episode);
+    }
 }

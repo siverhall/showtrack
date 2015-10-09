@@ -4,6 +4,8 @@ import com.google.inject.Inject;
 import com.siverhall.dataobjects.Episode;
 import com.siverhall.dataobjects.Show;
 import com.siverhall.services.EpisodeService;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.markup.html.form.AjaxCheckBox;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
@@ -51,10 +53,16 @@ public class SeasonPanel extends Panel {
         }
 
         @Override
-        protected void populateItem(ListItem<Episode> item) {
+        protected void populateItem(final ListItem<Episode> item) {
             item.add(new Label("episode", new PropertyModel<>(item.getModel(), "episode")));
             item.add(new Label("releaseDate", formatDate(item.getModelObject().getReleaseDate())));
             item.add(new Label("title", new PropertyModel<>(item.getModel(), "title")));
+            item.add(new AjaxCheckBox("seen", new PropertyModel<Boolean>(item.getModel(), "seen")) {
+                @Override
+                protected void onUpdate(AjaxRequestTarget target) {
+                    episodeService.checkEpisode(item.getModelObject(), getModelObject());
+                }
+            });
         }
 
         private String formatDate(Date date) {

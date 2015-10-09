@@ -1,11 +1,12 @@
 package com.siverhall.dataobjects;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "episodes")
-public class Episode {
+public class Episode implements Serializable {
 
     @Id
     @GeneratedValue

@@ -1,4 +1,4 @@
-body, p, li { font-family: 'Yanone Kaffeesatz', arial, sans-serif;font-size:13pt;}
+body, p, li { font-family: 'Yanone Kaffeesatz', arial, sans-serif;font-size:14pt;}
 h1, h2, h3 { font-family: 'Yanone Kaffeesatz', arial, sans-serif; }
 body { margin:0;padding:0;}
 #hd {
@@ -78,7 +78,7 @@ tbody tr:nth-child(even) {background: #E0ECF8}
 tbody tr:nth-child(odd) {background: #FFF}
 
 td {
-	padding-left: 15px;
-	padding-right: 15px;
-	padding-bottom: 5px;
+	padding-left: 25px;
+	padding-right: 25px;
+	padding-bottom: 10px;
 }
