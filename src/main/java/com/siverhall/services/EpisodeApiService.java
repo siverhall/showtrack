@@ -1,9 +1,11 @@
 package com.siverhall.services;
 
 import com.google.inject.ImplementedBy;
-import com.siverhall.dataobjects.Show;
 
+/**
+ *  Interface for methods connecting to remote API.
+ */
 @ImplementedBy(EpisodeApiServiceImpl.class)
 public interface EpisodeApiService {
-    Show findShow(String name);
+    void findShow(String name);
 }

@@ -3,6 +3,7 @@ package com.siverhall.services;
 import com.google.inject.Inject;
 import com.siverhall.dataobjects.Show;
 import com.siverhall.services.repos.ShowRepo;
+import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
@@ -18,6 +19,6 @@ public class ShowServiceImpl implements ShowService {
 
     @Override
     public List<Show> getCurrentShows() {
-        return showRepo.findAll();
+        return showRepo.findAll(new Sort(Sort.Direction.ASC, "name"));
     }
 }

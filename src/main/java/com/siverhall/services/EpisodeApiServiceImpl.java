@@ -17,6 +17,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ *  Implementations of remote API connected methods
+ */
 public class EpisodeApiServiceImpl implements EpisodeApiService {
 
     @Inject
@@ -24,24 +27,28 @@ public class EpisodeApiServiceImpl implements EpisodeApiService {
     @Inject
     private EpisodeRepo episodeRepo;
 
-    public static final String EPGUIDES_BASE = "https://frecar-epguides-api-v1.p.mashape.com/";
+    public static final String EPGUIDES_BASE_URL = "https://frecar-epguides-api-v1.p.mashape.com/";
     public static final String API_KEY = "FjBJLAnmuzmshbdX0fQnsf3FtcSCp15ozkIjsncujQK21qrRMV";
     private static final com.fasterxml.jackson.databind.ObjectMapper MAPPER
             = new com.fasterxml.jackson.databind.ObjectMapper();
 
+    /**
+     *  Connects to EpGuides API at specified remote url and search for TV shows with the
+     *  specified name. Stores both Show and Episode objects if successful.
+     *
+     */
     @Override
-    public Show findShow(String name) {
+    public void findShow(String name) {
         try {
-            HttpResponse<JsonNode> showInfo = getResponse(EPGUIDES_BASE + name + "/info");
+            HttpResponse<JsonNode> showInfo = getResponse(EPGUIDES_BASE_URL + name + "/info");
             Show show = saveShowInfo(showInfo);
 
-            HttpResponse<JsonNode> episodes = getResponse(EPGUIDES_BASE + name);
+            HttpResponse<JsonNode> episodes = getResponse(EPGUIDES_BASE_URL + name);
             saveEpisodeInfo(episodes, show);
 
         } catch (UnirestException | IOException e) {
             e.printStackTrace();
         }
-        return null;
     }
 
     private HttpResponse<JsonNode> getResponse(String url) throws UnirestException {

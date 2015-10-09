@@ -37,7 +37,7 @@ public class StartPage extends BasePage {
     }
 
     private void getListOfCurrentShows() {
-        add(new ListView<Show>("currentShows", getCurrentShows()) {
+        final ListView<Show> list = new ListView<Show>("currentShows", getCurrentShows()) {
             @Override
             protected void populateItem(ListItem<Show> item) {
                 Show show = item.getModelObject();
@@ -46,6 +46,14 @@ public class StartPage extends BasePage {
                 BookmarkablePageLink<Show> link = new BookmarkablePageLink<>("showLink", ShowPage.class, pp);
                 item.add(link);
                 link.add(new Label("showName", show.getName()));
+            }
+        };
+        add(list);
+        add(new Label("noShows", "You are currently not following any shows.") {
+            @Override
+            protected void onConfigure() {
+                super.onConfigure();
+                setVisibilityAllowed(list.getList().isEmpty());
             }
         });
     }
