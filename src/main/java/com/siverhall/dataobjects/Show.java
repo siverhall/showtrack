@@ -16,6 +16,9 @@ public class Show {
     @Basic
     private String imdb;
 
+    @Basic
+    private int noOfSeasons;
+
     public Show(String name, String imdb) {
         this.name = name;
         this.imdb = imdb;
@@ -42,5 +45,13 @@ public class Show {
 
     public void setImdb(String imdb) {
         this.imdb = imdb;
+    }
+
+    public int getNoOfSeasons() {
+        return noOfSeasons;
+    }
+
+    public void setNoOfSeasons(int noOfSeasons) {
+        this.noOfSeasons = noOfSeasons;
     }
 }

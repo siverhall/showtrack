@@ -1,6 +1,7 @@
 package com.siverhall.dataobjects;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "episodes")
@@ -22,14 +23,17 @@ public class Episode {
     @Basic
     private String title;
 
+    private Date releaseDate;
+
     @Column(name = "seen", nullable = false)
     private boolean seen = false;
 
-    public Episode(Show show, int season, int episode, String title) {
+    public Episode(Show show, int season, int episode, String title, Date releaseDate) {
         this.show = show;
         this.season = season;
         this.episode = episode;
         this.title = title;
+        this.releaseDate = releaseDate;
     }
 
     public Episode() {
@@ -78,5 +82,13 @@ public class Episode {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Date getReleaseDate() {
+        return releaseDate == null ? null : new Date(releaseDate.getTime());
+    }
+
+    public void setReleaseDate(Date releaseDate) {
+        this.releaseDate = releaseDate == null ? null : new Date(releaseDate.getTime());
     }
 }

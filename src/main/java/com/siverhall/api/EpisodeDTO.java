@@ -1,6 +1,14 @@
 package com.siverhall.api;
 
+import java.util.Date;
+
 public class EpisodeDTO {
+
+    private int number;
+    private String title;
+    private int season;
+    private Date release_date;
+    private ShowDTO show;
 
     public int getNumber() {
         return number;
@@ -22,16 +30,9 @@ public class EpisodeDTO {
         return season;
     }
 
+
     public void setSeason(int season) {
         this.season = season;
-    }
-
-    public String getRelease_date() {
-        return release_date;
-    }
-
-    public void setRelease_date(String release_date) {
-        this.release_date = release_date;
     }
 
     public ShowDTO getShow() {
@@ -42,10 +43,11 @@ public class EpisodeDTO {
         this.show = show;
     }
 
-    private int number;
-    private String title;
-    private int season;
-    private String release_date;
-    private ShowDTO show;
+    public Date getRelease_date() {
+        return release_date;
+    }
 
+    public void setRelease_date(Date release_date) {
+        this.release_date = release_date;
+    }
 }
