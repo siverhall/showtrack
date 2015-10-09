@@ -5,6 +5,7 @@ import com.siverhall.services.EpisodeApiService;
 import com.siverhall.services.ShowService;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.RequiredTextField;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.list.ListItem;
@@ -76,7 +77,7 @@ public class StartPage extends BasePage {
 
         public AddShowForm(String id) {
             super(id);
-            searchString = new TextField<>("searchString", Model.of(""));
+            searchString = new RequiredTextField<>("searchString", Model.of(""));
             add(searchString);
         }
 
@@ -84,10 +85,11 @@ public class StartPage extends BasePage {
         protected void onSubmit() {
             boolean found = epguidesAPI.findShow(searchString.getModelObject());
             if (found) {
-                success("Found show and it has been added to your show list!");
+                success("Found show and it has been added to your show list.");
             } else {
-                error("Couldn't find show, try another name");
+                error("Couldn't find show or it is already available in your show list.");
             }
         }
+
     }
 }

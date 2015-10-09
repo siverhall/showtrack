@@ -5,10 +5,10 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import com.siverhall.dataobjects.EpisodeDTO;
-import com.siverhall.dataobjects.ShowDTO;
 import com.siverhall.dataobjects.Episode;
+import com.siverhall.dataobjects.EpisodeDTO;
 import com.siverhall.dataobjects.Show;
+import com.siverhall.dataobjects.ShowDTO;
 import com.siverhall.services.repos.EpisodeRepo;
 import com.siverhall.services.repos.ShowRepo;
 
@@ -41,7 +41,14 @@ public class EpisodeApiServiceImpl implements EpisodeApiService {
     public boolean findShow(String name) {
         try {
             HttpResponse<JsonNode> showInfo = getResponse(EPGUIDES_BASE_URL + name + "/info");
-            Show show = saveShowInfo(showInfo);
+            ShowDTO result = MAPPER.readValue(showInfo.getRawBody(), ShowDTO.class);
+
+            if (showRepo.findByName(result.getTitle()) != null) {
+                System.out.println("Show already exists");
+                return false;
+            }
+
+            Show show = showRepo.save(new Show(result.getTitle(), result.getImdb_id()));
 
             HttpResponse<JsonNode> episodes = getResponse(EPGUIDES_BASE_URL + name);
             saveEpisodeInfo(episodes, show);
@@ -53,16 +60,14 @@ public class EpisodeApiServiceImpl implements EpisodeApiService {
         return true;
     }
 
+    /**
+     *  The Response from the API, returned as a json string
+     */
     private HttpResponse<JsonNode> getResponse(String url) throws UnirestException {
         return Unirest.get(url)
                 .header("X-Mashape-Key", API_KEY)
                 .header("Accept", "application/json")
                 .asJson();
-    }
-
-    private Show saveShowInfo(HttpResponse<JsonNode> response) throws IOException {
-        ShowDTO result = MAPPER.readValue(response.getRawBody(), ShowDTO.class);
-        return showRepo.save(new Show(result.getTitle(), result.getImdb_id()));
     }
 
     /**
