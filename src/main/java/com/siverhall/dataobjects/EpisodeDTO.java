@@ -14,25 +14,12 @@ public class EpisodeDTO {
         return number;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
-    }
-
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public int getSeason() {
         return season;
-    }
-
-
-    public void setSeason(int season) {
-        this.season = season;
     }
 
     public ShowDTO getShow() {
@@ -45,9 +32,5 @@ public class EpisodeDTO {
 
     public Date getRelease_date() {
         return release_date;
-    }
-
-    public void setRelease_date(Date release_date) {
-        this.release_date = release_date;
     }
 }
