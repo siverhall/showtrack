@@ -19,8 +19,21 @@ public class Episode {
     @Basic(optional = false)
     private int episode;
 
+    @Basic
+    private String title;
+
     @Column(name = "seen", nullable = false)
-    private boolean seen = true;
+    private boolean seen = false;
+
+    public Episode(Show show, int season, int episode, String title) {
+        this.show = show;
+        this.season = season;
+        this.episode = episode;
+        this.title = title;
+    }
+
+    public Episode() {
+    }
 
     public Long getId() {
         return id;
@@ -57,5 +70,13 @@ public class Episode {
 
     public void setSeen(boolean seen) {
         this.seen = seen;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

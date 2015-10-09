@@ -1,6 +1,7 @@
 package com.siverhall.pages;
 
 import com.siverhall.dataobjects.Show;
+import com.siverhall.services.EpisodeApiService;
 import com.siverhall.services.ShowService;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
@@ -8,7 +9,9 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.LoadableDetachableModel;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import javax.inject.Inject;
@@ -21,12 +24,15 @@ public class StartPage extends BasePage {
 
     @Inject
     private ShowService showService;
+    @Inject
+    private EpisodeApiService epguidesAPI;
 
     public StartPage(PageParameters parameters) {
         super(parameters);
 
+        add(new FeedbackPanel("feedback"));
         getListOfCurrentShows();
-        add(new NewShowForm("showForm"));
+        add(new AddShowForm("searchForm"));
 
     }
 
@@ -56,11 +62,21 @@ public class StartPage extends BasePage {
         };
     }
 
-    private class NewShowForm extends Form<Show> {
+    private class AddShowForm extends Form<String> {
 
-        public NewShowForm(String id) {
+        private final TextField<String> searchString;
+
+        public AddShowForm(String id) {
             super(id);
-            add(new TextField<String>("formName"));
+            searchString = new TextField<>("searchString", Model.of(""));
+            add(searchString);
+        }
+
+        @Override
+        protected void onSubmit() {
+            System.out.println("submit called");
+            epguidesAPI.findShow(searchString.getModelObject());
+            info("Found show!");
         }
     }
 }

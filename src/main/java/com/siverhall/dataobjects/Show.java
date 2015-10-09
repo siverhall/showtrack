@@ -16,6 +16,14 @@ public class Show {
     @Basic
     private String imdb;
 
+    public Show(String name, String imdb) {
+        this.name = name;
+        this.imdb = imdb;
+    }
+
+    public Show() {
+    }
+
     public Long getId() {
         return id;
     }

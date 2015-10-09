@@ -2,6 +2,7 @@
 <html xmlns:wicket="http://wicket.apache.org">
 	<body>
 		<wicket:extend>
+            <div wicket:id="feedback"></div>
 			<h3>Currently following:</h3>
 			<br />
             <div wicket:id="currentShows">
@@ -14,8 +15,9 @@
 			<br />
 			<h3>Add new show:</h3>
             <br />
-            <form wicket:id="showForm">
-                    <input placeholder="Enter name of show" type="text" wicket:id="formName"/>
+            <form wicket:id="searchForm">
+                    <input placeholder="Enter name of show" type="text" wicket:id="searchString"/>
+                    <button type="submit">Search!</button>
             </form>
 		</wicket:extend>
 	</body>
