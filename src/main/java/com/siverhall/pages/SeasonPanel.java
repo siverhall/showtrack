@@ -11,6 +11,8 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.PropertyModel;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -51,7 +53,12 @@ public class SeasonPanel extends Panel {
         @Override
         protected void populateItem(ListItem<Episode> item) {
             item.add(new Label("episode", new PropertyModel<>(item.getModel(), "episode")));
+            item.add(new Label("releaseDate", formatDate(item.getModelObject().getReleaseDate())));
             item.add(new Label("title", new PropertyModel<>(item.getModel(), "title")));
+        }
+
+        private String formatDate(Date date) {
+            return new SimpleDateFormat("yyyy-MM-dd").format(date);
         }
 
 

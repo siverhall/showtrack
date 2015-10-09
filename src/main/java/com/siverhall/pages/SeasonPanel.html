@@ -3,10 +3,24 @@
 <body>
 <wicket:panel>
     <h3><span wicket:id="seasonLabel"></span> </h3>
-    <div wicket:id="episodeList">
-        E: <span wicket:id="episode"></span>
-        - <span wicket:id="title"></span>
-    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Episode</th>
+                <th>Release date</th>
+                <th>Title</th>
+                <th>Seen?</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr wicket:id="episodeList">
+            <td><span wicket:id="episode"></span></td>
+            <td><span wicket:id="releaseDate"></span></td>
+            <td><span wicket:id="title"></span></td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
 </wicket:panel>
 </body>
 </html>
