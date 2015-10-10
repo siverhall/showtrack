@@ -30,6 +30,9 @@ public class ShowPage extends BasePage {
 
     }
 
+    /**
+     *  Adding a SeasonPanel with all episode info for each season available for the current show.
+     */
     private void addSeasonPanels(Show show) {
         RepeatingView seasons = new RepeatingView("seasonList");
         for (int i = 1; i <= show.getNoOfSeasons(); i++) {

@@ -4,6 +4,10 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ *  Data object for a single episode of a show.
+ *  Mapped to database table 'episodes'
+ */
 @Entity
 @Table(name = "episodes")
 public class Episode implements Serializable {

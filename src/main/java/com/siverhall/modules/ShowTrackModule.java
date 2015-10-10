@@ -18,17 +18,20 @@ public class ShowTrackModule extends ServletModule {
     protected void configureServlets() {
         install(new RepositoryModule());
 
-        Properties properties = loadProperties();
-        bindConstant().annotatedWith(Names.named("apiURL")).to(properties.getProperty("apiURL"));
-        bindConstant().annotatedWith(Names.named("apiKey")).to(properties.getProperty("apiKey"));
+        setupProperties();
 
         bind(WebApplication.class).to(ShowTrackApp.class);
     }
 
-    private Properties loadProperties() {
+    /**
+     *  Load details that is needed to connect to remote REST Api (url and api-key)
+     */
+    private Properties setupProperties() {
         try {
             Properties prop = new Properties();
             prop.load(getClass().getResourceAsStream("apiDetails.properties"));
+            bindConstant().annotatedWith(Names.named("apiURL")).to(prop.getProperty("apiURL"));
+            bindConstant().annotatedWith(Names.named("apiKey")).to(prop.getProperty("apiKey"));
             return prop;
         } catch (IOException e) {
             throw new RuntimeException(e);

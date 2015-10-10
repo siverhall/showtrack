@@ -2,6 +2,9 @@ package com.siverhall.dataobjects;
 
 import java.util.Date;
 
+/**
+ *  Data Transfer Object that is being used by the Jackson ObjectMapper while retrieving data from the REST Api.
+ */
 public class EpisodeDTO {
 
     private int number;

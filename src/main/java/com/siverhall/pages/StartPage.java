@@ -37,6 +37,9 @@ public class StartPage extends BasePage {
 
     }
 
+    /**
+     *  Display all shows currently available for the user.
+     */
     private void getListOfCurrentShows() {
         final ListView<Show> list = new ListView<Show>("currentShows", getCurrentShows()) {
             @Override
@@ -71,6 +74,9 @@ public class StartPage extends BasePage {
         };
     }
 
+    /**
+     *  Form for adding new shows to watch list through EpGuides API lookup.
+     */
     private class AddShowForm extends Form<String> {
 
         private final TextField<String> searchString;

@@ -1,5 +1,8 @@
 package com.siverhall.dataobjects;
 
+/**
+ *  Data Transfer Object that is being used by the Jackson ObjectMapper while retrieving data from the REST Api.
+ */
 public class ShowDTO {
     private String title;
     private String imdb_id;

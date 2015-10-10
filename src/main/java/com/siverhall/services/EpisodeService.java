@@ -6,6 +6,9 @@ import com.siverhall.dataobjects.Show;
 
 import java.util.List;
 
+/**
+ *  Interface for db handling of Episode objects.
+ */
 @ImplementedBy(EpisodeServiceImpl.class)
 public interface EpisodeService {
 

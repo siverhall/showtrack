@@ -11,6 +11,10 @@ import org.apache.wicket.protocol.http.WicketFilter;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ *  Listener for Guice that handle loading of project modules and adding Wicket specific settings (instead of doing
+ *  it in the web.xml).
+ */
 public class GuiceBootstrap extends GuiceServletContextListener {
     @Override
     protected Injector getInjector() {

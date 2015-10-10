@@ -46,6 +46,9 @@ public class SeasonPanel extends Panel {
         };
     }
 
+    /**
+     *  The table that displays all the data on the show information page.
+     */
     private class EpisodeListView extends ListView<Episode> {
 
         public EpisodeListView(String episodeList, LoadableDetachableModel<List<Episode>> model) {

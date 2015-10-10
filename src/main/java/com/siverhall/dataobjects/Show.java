@@ -3,6 +3,10 @@ package com.siverhall.dataobjects;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ *  Data object for a tv show.
+ *  Mapped to database table 'shows'
+ */
 @Entity
 @Table(name = "shows")
 public class Show implements Serializable {
