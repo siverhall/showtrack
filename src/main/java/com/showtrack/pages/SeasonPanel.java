@@ -1,9 +1,9 @@
-package com.siverhall.pages;
+package com.showtrack.pages;
 
 import com.google.inject.Inject;
-import com.siverhall.dataobjects.Episode;
-import com.siverhall.dataobjects.Show;
-import com.siverhall.services.EpisodeService;
+import com.showtrack.dataobjects.Episode;
+import com.showtrack.dataobjects.Show;
+import com.showtrack.services.EpisodeService;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxCheckBox;
 import org.apache.wicket.markup.html.basic.Label;

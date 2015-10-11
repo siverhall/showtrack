@@ -16,7 +16,7 @@
 	</filter-mapping>
 
     <listener>
-        <listener-class>com.siverhall.GuiceBootstrap</listener-class>
+        <listener-class>com.showtrack.GuiceBootstrap</listener-class>
     </listener>
 
 </web-app>

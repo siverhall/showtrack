@@ -1,8 +1,8 @@
-package com.siverhall.modules;
+package com.showtrack.modules;
 
 import com.google.inject.name.Names;
 import com.google.inject.servlet.ServletModule;
-import com.siverhall.ShowTrackApp;
+import com.showtrack.ShowTrackApp;
 import org.apache.wicket.protocol.http.WebApplication;
 
 import java.io.IOException;

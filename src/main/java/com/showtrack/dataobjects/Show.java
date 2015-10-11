@@ -1,4 +1,4 @@
-package com.siverhall.dataobjects;
+package com.showtrack.dataobjects;
 
 import javax.persistence.*;
 import java.io.Serializable;

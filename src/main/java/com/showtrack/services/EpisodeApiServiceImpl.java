@@ -1,16 +1,16 @@
-package com.siverhall.services;
+package com.showtrack.services;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import com.siverhall.dataobjects.Episode;
-import com.siverhall.dataobjects.EpisodeDTO;
-import com.siverhall.dataobjects.Show;
-import com.siverhall.dataobjects.ShowDTO;
-import com.siverhall.services.repos.EpisodeRepo;
-import com.siverhall.services.repos.ShowRepo;
+import com.showtrack.dataobjects.Episode;
+import com.showtrack.dataobjects.EpisodeDTO;
+import com.showtrack.dataobjects.Show;
+import com.showtrack.dataobjects.ShowDTO;
+import com.showtrack.services.repos.EpisodeRepo;
+import com.showtrack.services.repos.ShowRepo;
 
 import javax.inject.Inject;
 import javax.inject.Named;

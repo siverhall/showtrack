@@ -1,7 +1,7 @@
-package com.siverhall;
+package com.showtrack;
 
-import com.siverhall.pages.ShowPage;
-import com.siverhall.pages.StartPage;
+import com.showtrack.pages.ShowPage;
+import com.showtrack.pages.StartPage;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
 

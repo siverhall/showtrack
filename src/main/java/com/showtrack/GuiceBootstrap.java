@@ -1,10 +1,10 @@
-package com.siverhall;
+package com.showtrack;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.servlet.GuiceServletContextListener;
 import com.google.inject.servlet.ServletModule;
-import com.siverhall.modules.ShowTrackModule;
+import com.showtrack.modules.ShowTrackModule;
 import org.apache.wicket.guice.GuiceWebApplicationFactory;
 import org.apache.wicket.protocol.http.WicketFilter;
 

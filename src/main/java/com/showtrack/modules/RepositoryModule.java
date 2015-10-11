@@ -1,9 +1,9 @@
-package com.siverhall.modules;
+package com.showtrack.modules;
 
 import com.google.code.guice.repository.configuration.JpaRepositoryModule;
 import com.google.code.guice.repository.configuration.RepositoryBinder;
-import com.siverhall.services.repos.EpisodeRepo;
-import com.siverhall.services.repos.ShowRepo;
+import com.showtrack.services.repos.EpisodeRepo;
+import com.showtrack.services.repos.ShowRepo;
 
 /**
  *  Guice module that binds all repositories to the current persistence unit specified in

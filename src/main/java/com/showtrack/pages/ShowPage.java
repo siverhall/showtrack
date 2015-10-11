@@ -1,8 +1,8 @@
-package com.siverhall.pages;
+package com.showtrack.pages;
 
 import com.google.inject.Inject;
-import com.siverhall.dataobjects.Show;
-import com.siverhall.services.ShowService;
+import com.showtrack.dataobjects.Show;
+import com.showtrack.services.ShowService;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.repeater.RepeatingView;

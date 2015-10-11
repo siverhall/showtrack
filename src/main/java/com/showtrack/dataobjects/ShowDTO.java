@@ -1,4 +1,4 @@
-package com.siverhall.dataobjects;
+package com.showtrack.dataobjects;
 
 /**
  *  Data Transfer Object that is being used by the Jackson ObjectMapper while retrieving data from the REST Api.

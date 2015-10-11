@@ -1,8 +1,8 @@
-package com.siverhall.services;
+package com.showtrack.services;
 
 import com.google.inject.Inject;
-import com.siverhall.dataobjects.Show;
-import com.siverhall.services.repos.ShowRepo;
+import com.showtrack.dataobjects.Show;
+import com.showtrack.services.repos.ShowRepo;
 import org.springframework.data.domain.Sort;
 
 import java.util.List;

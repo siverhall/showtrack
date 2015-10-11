@@ -1,8 +1,8 @@
-package com.siverhall.services;
+package com.showtrack.services;
 
 import com.google.inject.ImplementedBy;
-import com.siverhall.dataobjects.Episode;
-import com.siverhall.dataobjects.Show;
+import com.showtrack.dataobjects.Episode;
+import com.showtrack.dataobjects.Show;
 
 import java.util.List;
 
