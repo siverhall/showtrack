@@ -4,6 +4,7 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.showtrack.services.EpisodeApiService;
+import com.showtrack.services.EpisodeService;
 import com.showtrack.services.ShowService;
 import org.apache.wicket.guice.GuiceComponentInjector;
 import org.apache.wicket.util.tester.WicketTester;
@@ -23,6 +24,8 @@ public abstract class BaseTest {
     protected ShowService showService;
     @Mock
     protected EpisodeApiService episodeApiService;
+    @Mock
+    protected EpisodeService episodeService;
 
     protected final WicketTester getTester() {
         return tester;
@@ -45,6 +48,7 @@ public abstract class BaseTest {
         protected void configure() {
             bind(ShowService.class).toInstance(showService);
             bind(EpisodeApiService.class).toInstance(episodeApiService);
+            bind(EpisodeService.class).toInstance(episodeService);
         }
     }
 }
