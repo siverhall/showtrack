@@ -91,9 +91,9 @@ public class StartPage extends BasePage {
         protected void onSubmit() {
             boolean found = epguidesAPI.findShow(searchString.getModelObject());
             if (found) {
-                success("Found show and it has been added to your show list.");
+                success(getString("submitted"));
             } else {
-                error("Couldn't find show or it is already available in your show list.");
+                error(getString("failed"));
             }
         }
 
