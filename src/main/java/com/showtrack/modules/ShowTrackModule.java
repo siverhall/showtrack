@@ -3,6 +3,7 @@ package com.showtrack.modules;
 import com.google.inject.name.Names;
 import com.google.inject.servlet.ServletModule;
 import com.showtrack.ShowTrackApp;
+import com.showtrack.services.*;
 import org.apache.wicket.protocol.http.WebApplication;
 
 import java.io.IOException;
@@ -17,6 +18,9 @@ public class ShowTrackModule extends ServletModule {
     @Override
     protected void configureServlets() {
         install(new RepositoryModule());
+        bind(ShowService.class).to(ShowServiceImpl.class);
+        bind(EpisodeService.class).to(EpisodeServiceImpl.class);
+        bind(EpisodeApiService.class).to(EpisodeApiServiceImpl.class);
 
         setupProperties();
 

@@ -9,7 +9,6 @@ import java.util.List;
 /**
  *  Interface for db handling of Episode objects.
  */
-@ImplementedBy(EpisodeServiceImpl.class)
 public interface EpisodeService {
 
     List<Episode> findEpisodes(Show show, int season);
