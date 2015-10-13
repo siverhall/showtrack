@@ -1,22 +1,13 @@
 package com.showtrack.dataobjects;
 
+import lombok.Getter;
+
 /**
  *  Data Transfer Object that is being used by the Jackson ObjectMapper while retrieving data from the REST Api.
  */
+@Getter
 public class ShowDTO {
     private String title;
     private String imdb_id;
     private String epguide_name;
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getImdb_id() {
-        return imdb_id;
-    }
-
-    public String getEpguide_name() {
-        return epguide_name;
-    }
 }

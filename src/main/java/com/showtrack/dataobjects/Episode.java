@@ -1,5 +1,7 @@
 package com.showtrack.dataobjects;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -9,6 +11,7 @@ import java.util.Date;
  *  Mapped to database table 'episodes'
  */
 @Entity
+@Data
 @Table(name = "episodes")
 public class Episode implements Serializable {
 
@@ -44,59 +47,4 @@ public class Episode implements Serializable {
     public Episode() {
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Show getShow() {
-        return show;
-    }
-
-    public void setShow(Show show) {
-        this.show = show;
-    }
-
-    public int getSeason() {
-        return season;
-    }
-
-    public void setSeason(int season) {
-        this.season = season;
-    }
-
-    public int getEpisode() {
-        return episode;
-    }
-
-    public void setEpisode(int episode) {
-        this.episode = episode;
-    }
-
-    public boolean isSeen() {
-        return seen;
-    }
-
-    public void setSeen(boolean seen) {
-        this.seen = seen;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public Date getReleaseDate() {
-        return releaseDate == null ? null : new Date(releaseDate.getTime());
-    }
-
-    public void setReleaseDate(Date releaseDate) {
-        this.releaseDate = releaseDate == null ? null : new Date(releaseDate.getTime());
-    }
 }
