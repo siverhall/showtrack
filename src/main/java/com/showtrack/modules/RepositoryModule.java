@@ -11,12 +11,12 @@ import com.showtrack.services.repos.ShowRepo;
  */
 public class RepositoryModule extends JpaRepositoryModule {
     public RepositoryModule() {
-        super("hibernate-manager");
+        super("tomcat-hibernate");
     }
 
     @Override
     protected void bindRepositories(RepositoryBinder binder) {
-        binder.bind(ShowRepo.class).to("hibernate-manager");
-        binder.bind(EpisodeRepo.class).to("hibernate-manager");
+        binder.bind(ShowRepo.class).to("tomcat-hibernate");
+        binder.bind(EpisodeRepo.class).to("tomcat-hibernate");
     }
 }
