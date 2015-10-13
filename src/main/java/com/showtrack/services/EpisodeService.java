@@ -14,4 +14,6 @@ public interface EpisodeService {
     List<Episode> findEpisodes(Show show, int season);
 
     void checkEpisode(Episode episode, Boolean seen);
+
+    Episode getLastSeen(Show show);
 }

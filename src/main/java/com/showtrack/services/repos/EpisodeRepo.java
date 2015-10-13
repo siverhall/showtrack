@@ -10,4 +10,6 @@ import java.util.List;
 public interface EpisodeRepo extends JpaRepository<Episode, Long>, EntityManagerProvider {
 
     List<Episode> findByShowAndSeason(Show show, int season);
+
+    List<Episode> findByShowAndSeenOrderByReleaseDateDesc(Show show, boolean seen);
 }

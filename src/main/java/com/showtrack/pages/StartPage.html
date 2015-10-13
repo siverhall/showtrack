@@ -4,11 +4,29 @@
 		<wicket:extend>
 			<h3>My shows</h3>
 			<br />
-            <div wicket:id="currentShows">
-                <a wicket:id="showLink" href="#">
-                    <span wicket:id="showName"></span>
-                </a>
-            </div>
+            <wicket:enclosure child="currentShows">
+            <table>
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Last seen episode</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr wicket:id="currentShows">
+                        <td>
+                            <a wicket:id="showLink" href="#">
+                                <span wicket:id="showName"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <span wicket:id="lastSeen"></span>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            </wicket:enclosure>
             <span wicket:id="noShows"></span>
 			<br />
 			<br />

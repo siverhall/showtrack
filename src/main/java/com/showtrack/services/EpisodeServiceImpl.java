@@ -31,4 +31,10 @@ public class EpisodeServiceImpl implements EpisodeService {
         episode.setSeen(seen);
         episodeRepo.save(episode);
     }
+
+    @Override
+    public Episode getLastSeen(Show show) {
+        List<Episode> seenEpisodes = episodeRepo.findByShowAndSeenOrderByReleaseDateDesc(show, true);
+        return seenEpisodes.isEmpty() ? null : seenEpisodes.get(0);
+    }
 }

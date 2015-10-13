@@ -1,7 +1,9 @@
 package com.showtrack.pages;
 
+import com.showtrack.dataobjects.Episode;
 import com.showtrack.dataobjects.Show;
 import com.showtrack.services.EpisodeApiService;
+import com.showtrack.services.EpisodeService;
 import com.showtrack.services.ShowService;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
@@ -11,8 +13,7 @@ import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
-import org.apache.wicket.model.LoadableDetachableModel;
-import org.apache.wicket.model.Model;
+import org.apache.wicket.model.*;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import javax.inject.Inject;
@@ -27,6 +28,8 @@ public class StartPage extends BasePage {
     private ShowService showService;
     @Inject
     private EpisodeApiService epguidesAPI;
+    @Inject
+    private EpisodeService episodeService;
 
     public StartPage(PageParameters parameters) {
         super(parameters);
@@ -50,8 +53,17 @@ public class StartPage extends BasePage {
                 BookmarkablePageLink<Show> link = new BookmarkablePageLink<>("showLink", ShowPage.class, pp);
                 item.add(link);
                 link.add(new Label("showName", show.getName()));
+
+                item.add(new Label("lastSeen", getLastSeen(item.getModel())));
+            }
+
+            @Override
+            protected void onConfigure() {
+                super.onConfigure();
+                setVisible(!getList().isEmpty());
             }
         };
+
         add(list);
         add(new Label("noShows", "You are currently not following any shows.") {
             @Override
@@ -60,6 +72,12 @@ public class StartPage extends BasePage {
                 setVisibilityAllowed(list.getList().isEmpty());
             }
         });
+    }
+
+    private IModel<String> getLastSeen(IModel<Show> model) {
+        Episode lastSeen = episodeService.getLastSeen(model.getObject());
+        return lastSeen == null ? new StringResourceModel("noSeen") :
+                new StringResourceModel("lastSeen", Model.of(lastSeen));
     }
 
     /**
