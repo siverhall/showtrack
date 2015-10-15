@@ -65,13 +65,6 @@ public class StartPage extends BasePage {
         };
 
         add(list);
-        add(new Label("noShows", "You are currently not following any shows.") {
-            @Override
-            protected void onConfigure() {
-                super.onConfigure();
-                setVisibilityAllowed(list.getList().isEmpty());
-            }
-        });
     }
 
     private IModel<String> getLastSeen(IModel<Show> model) {

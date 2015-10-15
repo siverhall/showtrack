@@ -2,10 +2,9 @@
 <html xmlns:wicket="http://wicket.apache.org">
 	<body>
 		<wicket:extend>
-			<h3>My shows</h3>
-			<br />
             <wicket:enclosure child="currentShows">
-            <table>
+            <h3>My Watch List</h3>
+            <table class="table table-striped table-hover">
                 <thead>
                 <tr>
                     <th>Title</th>
@@ -26,18 +25,27 @@
 
                 </tbody>
             </table>
-            </wicket:enclosure>
-            <span wicket:id="noShows"></span>
 			<br />
 			<br />
-			<br />
-			<h3>Add new show</h3>
-            <br />
-            <form wicket:id="searchForm">
-                    <input class="searchField" placeholder="Enter name of show" type="text" wicket:id="searchString"/>
-                    <button class="btn" type="submit">Find it!</button>
-            </form>
-            <div wicket:id="feedback"></div>
+              </wicket:enclosure>
+            <div class="jumbotron">
+            <h1>Missing a show?</h1>
+            <p class="lead">Search for your favorit TV shows and keep track on your watched episodes!</p>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <form wicket:id="searchForm">
+                            <div class="input-group">
+                                <input type="text" class="form-control " wicket:id="searchString" placeholder="Enter name of show"/>
+                                <span class="input-group-btn">
+                                <button class="btn button" type="submit">Find it &raquo;</button>
+                                </span>
+                            </div>
+
+                        </form>
+                        <div wicket:id="feedback"></div>
+                    </div>
+                </div>
+            </div>
         </wicket:extend>
 	</body>
 </html>
