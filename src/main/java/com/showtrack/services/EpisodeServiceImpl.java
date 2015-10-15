@@ -5,6 +5,7 @@ import com.showtrack.dataobjects.Episode;
 import com.showtrack.dataobjects.Show;
 import com.showtrack.services.repos.EpisodeRepo;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -36,5 +37,12 @@ public class EpisodeServiceImpl implements EpisodeService {
     public Episode getLastSeen(Show show) {
         List<Episode> seenEpisodes = episodeRepo.findByShowAndSeenOrderByReleaseDateDesc(show, true);
         return seenEpisodes.isEmpty() ? null : seenEpisodes.get(0);
+    }
+
+    @Override
+    public Episode getNextEpisode(Show show) {
+        Date now = new Date();
+        List<Episode> found = episodeRepo.findByShowAndReleaseDateAfterOrderByReleaseDateAsc(show, now);
+        return found.isEmpty() ? null : found.get(0);
     }
 }

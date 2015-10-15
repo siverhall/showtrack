@@ -16,4 +16,6 @@ public interface EpisodeService {
     void checkEpisode(Episode episode, Boolean seen);
 
     Episode getLastSeen(Show show);
+
+    Episode getNextEpisode(Show show);
 }

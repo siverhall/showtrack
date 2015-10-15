@@ -9,6 +9,7 @@ import org.apache.wicket.util.tester.FormTester;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
 
@@ -75,6 +76,25 @@ public class StartPageTest extends BaseTest
         StartPage page = getTester().startPage(StartPage.class);
         getTester().assertLabel("currentShows:0:lastSeen", page.getString("noSeen"));
     }
+
+    @Test
+    public void shows_correct_label_based_on_next_available_episode() throws Exception {
+        Date futureDate = new Date();
+        Episode next = new Episode(show, 1, 1, "Ep", futureDate);
+        when(episodeService.getNextEpisode(show)).thenReturn(next);
+        getTester().startPage(StartPage.class);
+
+        getTester().assertLabel("currentShows:0:nextEpisode", new SimpleDateFormat("yyyy-MM-dd").format(futureDate));
+    }
+
+    @Test
+    public void shows_correct_label_if_no_future_episodes_are_available() throws Exception {
+        when(episodeService.getNextEpisode(show)).thenReturn(null);
+        StartPage page = getTester().startPage(StartPage.class);
+
+        getTester().assertLabel("currentShows:0:nextEpisode", page.getString("noDate"));
+    }
+
 
     @Test
     public void list_of_current_shows_is_not_visible_when_empty() throws Exception {

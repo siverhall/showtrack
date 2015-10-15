@@ -17,6 +17,8 @@ import org.apache.wicket.model.*;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import javax.inject.Inject;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -55,6 +57,7 @@ public class StartPage extends BasePage {
                 link.add(new Label("showName", show.getName()));
 
                 item.add(new Label("lastSeen", getLastSeen(item.getModel())));
+                item.add(new Label("nextEpisode", getNextEpisode(item.getModel())));
             }
 
             @Override
@@ -71,6 +74,12 @@ public class StartPage extends BasePage {
         Episode lastSeen = episodeService.getLastSeen(model.getObject());
         return lastSeen == null ? new StringResourceModel("noSeen") :
                 new StringResourceModel("lastSeen", Model.of(lastSeen));
+    }
+
+    private IModel<String> getNextEpisode(IModel<Show> model) {
+        Episode next = episodeService.getNextEpisode(model.getObject());
+        return next == null ? new StringResourceModel("noDate") :
+                Model.of(formatDate(next.getReleaseDate()));
     }
 
     /**
@@ -108,5 +117,9 @@ public class StartPage extends BasePage {
             }
         }
 
+    }
+
+    private String formatDate(Date date) {
+        return new SimpleDateFormat("yyyy-MM-dd").format(date);
     }
 }
