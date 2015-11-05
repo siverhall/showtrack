@@ -2,6 +2,8 @@ package com.showtrack.pages;
 
 import com.showtrack.dataobjects.Episode;
 import com.showtrack.dataobjects.Show;
+import com.showtrack.dataobjects.ShowWrapper;
+import com.showtrack.providers.AutoCompleteProvider;
 import com.showtrack.services.EpisodeApiService;
 import com.showtrack.services.EpisodeService;
 import com.showtrack.services.ShowService;
@@ -15,9 +17,13 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.*;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.wicketstuff.select2.Response;
+import org.wicketstuff.select2.Select2Choice;
+import org.wicketstuff.select2.TextChoiceProvider;
 
 import javax.inject.Inject;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -29,7 +35,7 @@ public class StartPage extends BasePage {
     @Inject
     private ShowService showService;
     @Inject
-    private EpisodeApiService epguidesAPI;
+    private EpisodeApiService episodeAPI;
     @Inject
     private EpisodeService episodeService;
 
@@ -105,16 +111,13 @@ public class StartPage extends BasePage {
             super(id);
             searchString = new RequiredTextField<>("searchString", Model.of(""));
             add(searchString);
+            add(new Select2Choice<>("autoComplete", new AutoCompleteProvider(episodeAPI)));
         }
 
         @Override
         protected void onSubmit() {
-            boolean found = epguidesAPI.findShow(searchString.getModelObject());
-            if (found) {
-                success(getString("submitted"));
-            } else {
-                error(getString("failed"));
-            }
+            List<ShowWrapper> shows = episodeAPI.findShow(searchString.getModelObject());
+
         }
 
     }
@@ -122,4 +125,5 @@ public class StartPage extends BasePage {
     private String formatDate(Date date) {
         return new SimpleDateFormat("yyyy-MM-dd").format(date);
     }
+
 }

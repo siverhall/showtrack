@@ -20,7 +20,7 @@ public class ShowTrackModule extends ServletModule {
         install(new RepositoryModule());
         bind(ShowService.class).to(ShowServiceImpl.class);
         bind(EpisodeService.class).to(EpisodeServiceImpl.class);
-        bind(EpisodeApiService.class).to(EpisodeApiServiceImpl.class);
+        bind(EpisodeApiService.class).to(TvMazeImpl.class);
 
         setupProperties();
 
@@ -35,7 +35,6 @@ public class ShowTrackModule extends ServletModule {
             Properties prop = new Properties();
             prop.load(getClass().getResourceAsStream("apiDetails.properties"));
             bindConstant().annotatedWith(Names.named("apiURL")).to(prop.getProperty("apiURL"));
-            bindConstant().annotatedWith(Names.named("apiKey")).to(prop.getProperty("apiKey"));
             return prop;
         } catch (IOException e) {
             throw new RuntimeException(e);
