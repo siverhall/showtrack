@@ -3,11 +3,8 @@ package com.showtrack.pages;
 import com.showtrack.BaseTest;
 import com.showtrack.dataobjects.Show;
 import org.apache.wicket.Component;
-import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
-import org.apache.wicket.util.tester.FormTester;
-import org.apache.wicket.util.visit.IVisitor;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -25,7 +22,7 @@ public class ShowPageTest extends BaseTest {
     public void setUp() throws Exception {
         when(showService.findById(SHOW_ID)).thenReturn(getShow());
         getTester().startPage(ShowPage.class, getParameters());
-        login();
+        login("secret", "secret");
     }
 
     @Test

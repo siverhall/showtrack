@@ -4,7 +4,6 @@ import com.showtrack.BaseTest;
 import com.showtrack.dataobjects.Episode;
 import com.showtrack.dataobjects.Show;
 import org.apache.wicket.feedback.FeedbackMessage;
-import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.FormTester;
 import org.junit.Before;
@@ -17,7 +16,6 @@ import java.util.Date;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsCollectionContaining.hasItem;
 import static org.mockito.Matchers.anyInt;
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -32,7 +30,7 @@ public class StartPageTest extends BaseTest
         when(showService.getCurrentShows()).thenReturn(Collections.singletonList(show));
         when(episodeApi.importShow(anyInt())).thenReturn(true);
         getTester().startPage(StartPage.class);
-        login();
+        login("secret", "secret");
     }
 
     @Test

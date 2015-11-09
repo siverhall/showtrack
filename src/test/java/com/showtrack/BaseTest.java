@@ -7,8 +7,6 @@ import com.showtrack.services.EpisodeApi;
 import com.showtrack.services.EpisodeService;
 import com.showtrack.services.ShowService;
 import org.apache.wicket.Session;
-import org.apache.wicket.authroles.authentication.AbstractAuthenticatedWebSession;
-import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.guice.GuiceComponentInjector;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.Response;
@@ -18,8 +16,6 @@ import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-
-import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public abstract class BaseTest {
@@ -37,10 +33,10 @@ public abstract class BaseTest {
         return tester;
     }
 
-    protected void login() {
+    protected void login(String user, String pass) {
         FormTester tester = getTester().newFormTester("loginForm");
-        tester.setValue("username", "secret");
-        tester.setValue("password", "secret");
+        tester.setValue("username", user);
+        tester.setValue("password", pass);
         tester.submit();
     }
 

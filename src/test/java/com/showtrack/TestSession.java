@@ -10,6 +10,6 @@ public class TestSession extends AuthenticatedSession {
 
     @Override
     protected boolean authenticate(String user, String pass) {
-        return true;
+        return user.equals(pass);
     }
 }
