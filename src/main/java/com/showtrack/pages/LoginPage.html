@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Show Tracker - Keep track of your tv shows!</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="signin.css" type="text/css" media="screen" title="Stylesheet" />
+</head>
 <body>
-<form wicket:id="loginForm">
-    <input type="text" wicket:id="username" placeholder="Username" />
-    <input type="password" wicket:id="password" placeholder="Password" />
-    <button type="submit">Sign in</button>
-</form>
+<div class="container">
+
+    <form wicket:id="loginForm" class="form-signin">
+        <h2 class="form-signin-heading">Please sign in to use Show Tracker</h2>
+        <label for="inputEmail" class="sr-only">Username</label>
+        <input wicket:id="username" type="text" id="inputEmail" class="form-control" placeholder="Username" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input wicket:id="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+
+</div>
+
 </body>
 </html>

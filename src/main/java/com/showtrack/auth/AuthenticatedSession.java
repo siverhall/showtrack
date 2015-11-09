@@ -17,6 +17,6 @@ public class AuthenticatedSession extends AuthenticatedWebSession {
 
     @Override
     public Roles getRoles() {
-        return null;
+        return new Roles(Roles.USER);
     }
 }

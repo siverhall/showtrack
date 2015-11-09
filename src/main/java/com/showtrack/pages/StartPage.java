@@ -1,5 +1,6 @@
 package com.showtrack.pages;
 
+import com.showtrack.auth.AuthenticatedSession;
 import com.showtrack.dataobjects.*;
 import com.showtrack.json.ShowProvider;
 import com.showtrack.services.EpisodeApi;
@@ -38,7 +39,6 @@ public class StartPage extends BasePage {
         add(new FeedbackPanel("feedback"));
         getListOfCurrentShows();
         add(new AddShowForm("searchForm"));
-
     }
 
     /**
