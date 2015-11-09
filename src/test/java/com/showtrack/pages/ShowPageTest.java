@@ -45,7 +45,7 @@ public class ShowPageTest extends BaseTest {
     }
 
     private Show getShow() {
-        Show show = new Show("show!", "12345678");
+        Show show = new Show("show!", "Running", 5, 5);
         show.setNoOfSeasons(SEASONS);
         return show;
     }

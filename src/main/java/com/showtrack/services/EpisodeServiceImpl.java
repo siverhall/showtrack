@@ -35,14 +35,14 @@ public class EpisodeServiceImpl implements EpisodeService {
 
     @Override
     public Episode getLastSeen(Show show) {
-        List<Episode> seenEpisodes = episodeRepo.findByShowAndSeenOrderByReleaseDateDesc(show, true);
+        List<Episode> seenEpisodes = episodeRepo.findByShowAndSeenOrderByAirDateDesc(show, true);
         return seenEpisodes.isEmpty() ? null : seenEpisodes.get(0);
     }
 
     @Override
     public Episode getNextEpisode(Show show) {
         Date now = new Date();
-        List<Episode> found = episodeRepo.findByShowAndReleaseDateAfterOrderByReleaseDateAsc(show, now);
+        List<Episode> found = episodeRepo.findByShowAndAirDateAfterOrderByAirDateAsc(show, now);
         return found.isEmpty() ? null : found.get(0);
     }
 }

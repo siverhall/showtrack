@@ -22,14 +22,19 @@ public class Show implements Serializable {
     private String name;
 
     @Basic
-    private String imdb;
+    private String status;
+
+    @Basic
+    private int showId;
 
     @Basic
     private int noOfSeasons;
 
-    public Show(String name, String imdb) {
+    public Show(String name, String status, int showId, int noOfSeasons) {
         this.name = name;
-        this.imdb = imdb;
+        this.status = status;
+        this.showId = showId;
+        this.noOfSeasons = noOfSeasons;
     }
 
     public Show() {

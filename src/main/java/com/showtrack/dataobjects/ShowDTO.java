@@ -7,7 +7,22 @@ import lombok.Getter;
  */
 @Getter
 public class ShowDTO {
-    private String title;
-    private String imdb_id;
-    private String epguide_name;
+    private int id;
+    private String name;
+    private String status;
+
+    private Wrapper _embedded;
+
+    @Getter
+    public class Wrapper {
+        private PreviousEpisode previousepisode;
+
+        public class PreviousEpisode {
+            private int season;
+
+            public int getSeason() {
+                return season;
+            }
+        }
+    }
 }

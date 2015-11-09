@@ -10,10 +10,9 @@ import java.util.Date;
 @Getter
 public class EpisodeDTO {
 
+    private String name;
     private int number;
-    private String title;
     private int season;
-    private Date release_date;
-    private ShowDTO show;
+    private Date airdate;
 
 }

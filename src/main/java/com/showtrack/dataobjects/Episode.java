@@ -31,17 +31,17 @@ public class Episode implements Serializable {
     @Basic
     private String title;
 
-    private Date releaseDate;
+    private Date airDate;
 
     @Column(name = "seen", nullable = false)
     private boolean seen = false;
 
-    public Episode(Show show, int season, int episode, String title, Date releaseDate) {
+    public Episode(Show show, int season, int episode, String title, Date airDate) {
         this.show = show;
         this.season = season;
         this.episode = episode;
         this.title = title;
-        this.releaseDate = releaseDate;
+        this.airDate = airDate;
     }
 
     public Episode() {

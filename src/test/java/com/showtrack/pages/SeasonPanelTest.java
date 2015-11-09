@@ -63,7 +63,7 @@ public class SeasonPanelTest extends BaseTest {
     }
 
     private Show getShow() {
-        Show show = new Show("show!", "12345");
+        Show show = new Show("show!", "Running", 2, 4);
         show.setId(5L);
         return show;
     }

@@ -20,7 +20,7 @@ public class ShowTrackModule extends ServletModule {
         install(new RepositoryModule());
         bind(ShowService.class).to(ShowServiceImpl.class);
         bind(EpisodeService.class).to(EpisodeServiceImpl.class);
-        bind(EpisodeApiService.class).to(TvMazeImpl.class);
+        bind(EpisodeApi.class).to(TvMazeEpisodeApiImpl.class);
 
         setupProperties();
 

@@ -12,7 +12,7 @@ public interface EpisodeRepo extends JpaRepository<Episode, Long>, EntityManager
 
     List<Episode> findByShowAndSeason(Show show, int season);
 
-    List<Episode> findByShowAndSeenOrderByReleaseDateDesc(Show show, boolean seen);
+    List<Episode> findByShowAndSeenOrderByAirDateDesc(Show show, boolean seen);
 
-    List<Episode> findByShowAndReleaseDateAfterOrderByReleaseDateAsc(Show show, Date date);
+    List<Episode> findByShowAndAirDateAfterOrderByAirDateAsc(Show show, Date date);
 }

@@ -5,5 +5,8 @@
     <persistence-unit name="tomcat-hibernate" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <non-jta-data-source>java:/comp/env/jdbc/ShowTrackDS</non-jta-data-source>
+        <properties>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+        </properties>
     </persistence-unit>
 </persistence>

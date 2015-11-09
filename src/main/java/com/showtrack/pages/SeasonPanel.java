@@ -59,7 +59,7 @@ public class SeasonPanel extends Panel {
         @Override
         protected void populateItem(final ListItem<Episode> item) {
             item.add(new Label("episode", new PropertyModel<>(item.getModel(), "episode")));
-            item.add(new Label("releaseDate", formatDate(item.getModelObject().getReleaseDate())));
+            item.add(new Label("releaseDate", formatDate(item.getModelObject().getAirDate())));
             item.add(new Label("title", new PropertyModel<>(item.getModel(), "title")));
             item.add(new AjaxCheckBox("seen", new PropertyModel<Boolean>(item.getModel(), "seen")) {
                 @Override

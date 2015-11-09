@@ -1,29 +1,22 @@
 package com.showtrack.pages;
 
-import com.showtrack.dataobjects.Episode;
-import com.showtrack.dataobjects.Show;
-import com.showtrack.dataobjects.ShowWrapper;
-import com.showtrack.providers.AutoCompleteProvider;
-import com.showtrack.services.EpisodeApiService;
+import com.showtrack.dataobjects.*;
+import com.showtrack.json.ShowProvider;
+import com.showtrack.services.EpisodeApi;
 import com.showtrack.services.EpisodeService;
 import com.showtrack.services.ShowService;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.markup.html.form.RequiredTextField;
-import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.*;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
-import org.wicketstuff.select2.Response;
 import org.wicketstuff.select2.Select2Choice;
-import org.wicketstuff.select2.TextChoiceProvider;
 
 import javax.inject.Inject;
 import java.text.SimpleDateFormat;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -35,7 +28,7 @@ public class StartPage extends BasePage {
     @Inject
     private ShowService showService;
     @Inject
-    private EpisodeApiService episodeAPI;
+    private EpisodeApi episodeAPI;
     @Inject
     private EpisodeService episodeService;
 
@@ -85,7 +78,7 @@ public class StartPage extends BasePage {
     private IModel<String> getNextEpisode(IModel<Show> model) {
         Episode next = episodeService.getNextEpisode(model.getObject());
         return next == null ? new StringResourceModel("noDate") :
-                Model.of(formatDate(next.getReleaseDate()));
+                Model.of(formatDate(next.getAirDate()));
     }
 
     /**
@@ -105,19 +98,23 @@ public class StartPage extends BasePage {
      */
     private class AddShowForm extends Form<String> {
 
-        private final TextField<String> searchString;
+        private final Select2Choice<MatchingShow> autoComplete;
 
         public AddShowForm(String id) {
             super(id);
-            searchString = new RequiredTextField<>("searchString", Model.of(""));
-            add(searchString);
-            add(new Select2Choice<>("autoComplete", new AutoCompleteProvider(episodeAPI)));
+            autoComplete = new Select2Choice<>("autoComplete", new Model<MatchingShow>(), new ShowProvider(episodeAPI));
+            autoComplete.setRequired(true);
+            add(autoComplete);
         }
 
         @Override
         protected void onSubmit() {
-            List<ShowWrapper> shows = episodeAPI.findShow(searchString.getModelObject());
-
+            boolean result = episodeAPI.importShow(autoComplete.getConvertedInput().getId());
+            if (result) {
+                success(getString("submitted"));
+            } else {
+                error(getString("failed"));
+            }
         }
 
     }

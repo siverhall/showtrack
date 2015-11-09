@@ -25,7 +25,6 @@ public class ShowPage extends BasePage {
         Show show = showService.findById(showId);
 
         add(new Label("title", show.getName()));
-        add(new ExternalLink("imdb", "http://www.imdb.com/title/" + show.getImdb()));
         addSeasonPanels(show);
 
     }
