@@ -3,8 +3,10 @@ package com.showtrack.pages;
 import com.showtrack.BaseTest;
 import com.showtrack.dataobjects.Show;
 import org.apache.wicket.Component;
+import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.apache.wicket.util.tester.FormTester;
 import org.apache.wicket.util.visit.IVisitor;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,12 +20,12 @@ public class ShowPageTest extends BaseTest {
 
     public static final Long SHOW_ID = 6L;
     public static final int SEASONS = 5;
-    private ShowPage page;
 
     @Before
     public void setUp() throws Exception {
         when(showService.findById(SHOW_ID)).thenReturn(getShow());
-        page = getTester().startPage(ShowPage.class, getParameters());
+        getTester().startPage(ShowPage.class, getParameters());
+        login();
     }
 
     @Test
@@ -33,7 +35,7 @@ public class ShowPageTest extends BaseTest {
 
     @Test
     public void one_repeating_view_for_each_season() throws Exception {
-        RepeatingView seasons = (RepeatingView) page.get("seasonList");
+        RepeatingView seasons = (RepeatingView) getTester().getLastRenderedPage().get("seasonList");
         Iterator<Component> iterator = seasons.iterator();
         int seasonPanels = 0;
         while(iterator.hasNext()) {

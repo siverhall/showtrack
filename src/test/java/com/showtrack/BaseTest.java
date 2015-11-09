@@ -6,12 +6,20 @@ import com.google.inject.Injector;
 import com.showtrack.services.EpisodeApi;
 import com.showtrack.services.EpisodeService;
 import com.showtrack.services.ShowService;
+import org.apache.wicket.Session;
+import org.apache.wicket.authroles.authentication.AbstractAuthenticatedWebSession;
+import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.guice.GuiceComponentInjector;
+import org.apache.wicket.request.Request;
+import org.apache.wicket.request.Response;
+import org.apache.wicket.util.tester.FormTester;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public abstract class BaseTest {
@@ -29,11 +37,23 @@ public abstract class BaseTest {
         return tester;
     }
 
+    protected void login() {
+        FormTester tester = getTester().newFormTester("loginForm");
+        tester.setValue("username", "secret");
+        tester.setValue("password", "secret");
+        tester.submit();
+    }
+
     @Before
     public void setUpApplication() throws Exception {
         final Injector injector = Guice.createInjector(new TestModule());
 
-        ShowTrackApp application = new ShowTrackApp();
+        ShowTrackApp application = new ShowTrackApp() {
+            @Override
+            public Session newSession(Request request, Response response) {
+                return new TestSession(request);
+            }
+        };
         application.getComponentInstantiationListeners().add(
                 new GuiceComponentInjector(application, injector));
         tester = new WicketTester(application);

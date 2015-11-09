@@ -4,6 +4,7 @@ import com.showtrack.BaseTest;
 import com.showtrack.dataobjects.Episode;
 import com.showtrack.dataobjects.Show;
 import org.apache.wicket.feedback.FeedbackMessage;
+import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.FormTester;
 import org.junit.Before;
@@ -23,7 +24,6 @@ import static org.mockito.Mockito.when;
 public class StartPageTest extends BaseTest
 {
 
-    private StartPage page;
     private Show show;
 
     @Before
@@ -31,7 +31,8 @@ public class StartPageTest extends BaseTest
         show = getShow();
         when(showService.getCurrentShows()).thenReturn(Collections.singletonList(show));
         when(episodeApi.importShow(anyInt())).thenReturn(true);
-        page = getTester().startPage(StartPage.class);
+        getTester().startPage(StartPage.class);
+        login();
     }
 
     @Test
@@ -44,20 +45,20 @@ public class StartPageTest extends BaseTest
     public void form_submission_requires_input() throws Exception {
         FormTester formTester = getTester().newFormTester("searchForm");
         formTester.submit();
-        getTester().assertErrorMessages(page.getString("autoComplete.Required"));
+        getTester().assertErrorMessages(getTester().getLastRenderedPage().getString("autoComplete.Required"));
     }
 
     @Test
     public void form_submission_calls_api_service() throws Exception {
         submitForm("4");
-        assertThat(getTester().getMessages(FeedbackMessage.SUCCESS), hasItem(page.getString("submitted")));
+        assertThat(getTester().getMessages(FeedbackMessage.SUCCESS), hasItem(getTester().getLastRenderedPage().getString("submitted")));
     }
 
     @Test
     public void failed_form_submission_prints_error_message() throws Exception {
         when(episodeApi.importShow(anyInt())).thenReturn(false);
         submitForm("4");
-        assertThat(getTester().getMessages(FeedbackMessage.ERROR), hasItem(page.getString("failed")));
+        assertThat(getTester().getMessages(FeedbackMessage.ERROR), hasItem(getTester().getLastRenderedPage().getString("failed")));
     }
 
     @Test
